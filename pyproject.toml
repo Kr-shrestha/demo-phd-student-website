@@ -1,2 +1,14 @@
+[project]
+name = "phd-student-website"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "Flask",
+    "Flask-SQLAlchemy",
+    "Flask-Login",
+    "Flask-WTF",
+    "Werkzeug"
+]
+
 [tool.vercel]
 entrypoint = "run:app"
