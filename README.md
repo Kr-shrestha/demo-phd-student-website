@@ -129,10 +129,3 @@ a Python shell using the `Publication` model in `app/models.py`.
 - Interactive behavior (mobile menu, publication filters): edit
   `app/static/js/main.js`.
 
-## Notes on Content Accuracy
-
-This project only includes information that was explicitly provided. Fields
-without confirmed details (exact years, methodology, expected contribution,
-office location, etc.) are marked with `[ADD ...]` placeholders rather than
-invented — please replace them with accurate information before publishing
-the site.
