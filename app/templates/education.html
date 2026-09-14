@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Education{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container narrow">
+        <p class="eyebrow">Education</p>
+        <h1 class="section-title">Academic Qualifications</h1>
+
+        {% if education %}
+        <ol class="timeline">
+            {% for item in education %}
+            <li class="timeline-item">
+                <p class="timeline-dates">{{ item.start_year }} &ndash; {{ item.end_year }}</p>
+                <div class="timeline-body">
+                    <h3>{{ item.degree }}</h3>
+                    <p class="timeline-institution">{{ item.institution }}{% if item.location %}, {{ item.location }}{% endif %}</p>
+                    {% if item.specialization %}
+                    <p class="timeline-detail">Specialization: {{ item.specialization }}</p>
+                    {% endif %}
+                    {% if item.thesis %}
+                    <p class="timeline-detail">Thesis: {{ item.thesis }}</p>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ol>
+        {% else %}
+        <p class="empty-state">[ADD EDUCATION]</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

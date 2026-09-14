@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container narrow">
+        <p class="eyebrow">Projects</p>
+        <h1 class="section-title">Research Projects</h1>
+
+        {% if projects %}
+        <div class="project-list">
+            {% for project in projects %}
+            <article class="project-card">
+                <h3>{{ project.title }}</h3>
+                <p class="project-meta">
+                    {% if project.role %}{{ project.role }} &middot; {% endif %}
+                    {% if project.duration %}{{ project.duration }} &middot; {% endif %}
+                    {% if project.research_area %}{{ project.research_area }}{% endif %}
+                </p>
+                <p>{{ project.description }}</p>
+                {% if project.collaborators %}
+                <p class="project-meta"><strong>Collaborators:</strong> {{ project.collaborators }}</p>
+                {% endif %}
+                {% if project.funder %}
+                <p class="project-meta"><strong>Funded by:</strong> {{ project.funder }}</p>
+                {% endif %}
+                {% if project.technologies %}
+                <p class="project-meta"><strong>Methods:</strong> {{ project.technologies }}</p>
+                {% endif %}
+                {% if project.link %}
+                <a href="{{ project.link }}" class="pub-link" target="_blank" rel="noopener">Learn More &rarr;</a>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">[ADD PROJECTS]</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

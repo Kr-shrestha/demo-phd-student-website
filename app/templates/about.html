@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container narrow">
+        <p class="eyebrow">About</p>
+        <h1 class="section-title">{{ student.name }}</h1>
+        <p class="lede">{{ student.title }} &middot; {{ student.department }}, {{ student.university }}</p>
+
+        <div class="prose">
+            <p>{{ student.bio_short }}</p>
+            <h2>Background</h2>
+            <p>{{ student.bio_long }}</p>
+        </div>
+
+        <div class="info-cards">
+            <div class="info-card">
+                <p class="info-card-label">Current Position</p>
+                <ul>
+                    <li>{{ student.title }}</li>
+                    <li>{{ student.department }}</li>
+                    <li>{{ student.university }}</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <p class="info-card-label">Research Interests</p>
+                <ul>
+                    {% for interest in student.research_interests %}
+                    <li>{{ interest }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

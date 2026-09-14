@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container narrow">
+        <p class="eyebrow">Contact</p>
+        <h1 class="section-title">Get in Touch</h1>
+
+        <div class="contact-grid">
+            <div class="contact-details">
+                <p class="info-card-label">Email</p>
+                <p><a href="mailto:{{ student.email }}">{{ student.email }}</a></p>
+
+                {% if student.phone %}
+                <p class="info-card-label">Phone</p>
+                <p>{{ student.phone }}</p>
+                {% endif %}
+
+                <p class="info-card-label">University</p>
+                <p>{{ student.university }}<br>{{ student.department }}</p>
+
+                {% if student.location != '[ADD LOCATION]' %}
+                <p class="info-card-label">Office Location</p>
+                <p>{{ student.location }}</p>
+                {% endif %}
+
+                <p class="info-card-label">Academic Profiles</p>
+                <ul class="profile-links">
+                    {% if student.research_profile_url %}<li><a href="{{ student.research_profile_url }}" target="_blank" rel="noopener">Research &amp; Staff Database</a></li>{% endif %}
+                    {% if student.google_scholar %}<li><a href="{{ student.google_scholar }}" target="_blank" rel="noopener">Google Scholar</a></li>{% endif %}
+                    {% if student.orcid %}<li><a href="{{ student.orcid }}" target="_blank" rel="noopener">ORCID</a></li>{% endif %}
+                    {% if student.linkedin %}<li><a href="{{ student.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></li>{% endif %}
+                    {% if student.github %}<li><a href="{{ student.github }}" target="_blank" rel="noopener">GitHub</a></li>{% endif %}
+                    {% if not (student.google_scholar or student.orcid or student.linkedin or student.github) %}
+                    <li class="muted">[ADD PROFILE LINKS]</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <form class="contact-form" method="POST" novalidate>
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.name.label }}
+                    {{ form.name(class_="form-input") }}
+                    {% for error in form.name.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(class_="form-input") }}
+                    {% for error in form.email.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.subject.label }}
+                    {{ form.subject(class_="form-input") }}
+                    {% for error in form.subject.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.message.label }}
+                    {{ form.message(class_="form-input", rows="6") }}
+                    {% for error in form.message.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+                </div>
+
+                {{ form.submit(class_="btn btn-primary") }}
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ student.name }}{% endblock %} | {{ student.title }}</title>
+    <meta name="description" content="Academic website of {{ student.name }}, {{ student.title }} at {{ student.university }}.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="{{ url_for('main.index') }}" class="brand">{{ student.name }}</a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primaryNav">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="primary-nav" id="primaryNav">
+                <a href="{{ url_for('main.about') }}" class="{{ 'active' if request.endpoint == 'main.about' }}">About</a>
+                <a href="{{ url_for('main.research') }}" class="{{ 'active' if request.endpoint == 'main.research' }}">Research</a>
+                <a href="{{ url_for('main.publications') }}" class="{{ 'active' if request.endpoint == 'main.publications' }}">Publications</a>
+                <a href="{{ url_for('main.projects') }}" class="{{ 'active' if request.endpoint == 'main.projects' }}">Projects</a>
+                <a href="{{ url_for('main.education') }}" class="{{ 'active' if request.endpoint == 'main.education' }}">Education</a>
+                {% if student.cv_filename %}
+                <a href="{{ url_for('static', filename='files/' ~ student.cv_filename) }}">CV</a>
+                {% endif %}
+                <a href="{{ url_for('main.contact') }}" class="{{ 'active' if request.endpoint == 'main.contact' }}">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="container flash-container">
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}" role="status">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>{{ student.name }} &middot; {{ student.title }} &middot; {{ current_year }}</p>
+            <p>{{ student.university }} &middot; {{ student.department }}</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

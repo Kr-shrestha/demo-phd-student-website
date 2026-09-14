@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Research{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container narrow">
+        <p class="eyebrow">Research</p>
+        <h1 class="section-title">Research Overview</h1>
+        <div class="prose">
+            <p>{{ student.research_description }}</p>
+        </div>
+
+        <h2 class="subsection-title">Research Interests</h2>
+        <div class="tag-row">
+            {% for interest in student.research_interests %}
+            <span class="tag">{{ interest }}</span>
+            {% endfor %}
+        </div>
+
+        <h2 class="subsection-title">Current Research</h2>
+        <div class="research-card">
+            <h3>{{ student.research_title }}</h3>
+            <p class="research-meta">Funded by {{ student.research_funder }} &middot; Collaborators: {{ student.research_collaborators }}</p>
+            <p>{{ student.research_description }}</p>
+
+            <div class="research-detail-grid">
+                <div>
+                    <p class="info-card-label">Objectives</p>
+                    <p>To understand how rural youth and young farmers from intersecting socio-economic backgrounds respond to the transformation of irrigation systems in Nepal.</p>
+                </div>
+                <div>
+                    <p class="info-card-label">Methodology</p>
+                    <p>[ADD METHODOLOGY DETAILS]</p>
+                </div>
+                <div>
+                    <p class="info-card-label">Expected Contribution</p>
+                    <p>[ADD EXPECTED CONTRIBUTION]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

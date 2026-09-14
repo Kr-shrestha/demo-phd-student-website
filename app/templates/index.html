@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-photo-wrap">
+            <div class="hero-photo">
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+                     alt="Photograph of {{ student.name }}"
+                     onerror="this.onerror=null;this.src='';this.parentElement.classList.add('photo-placeholder');">
+                <span class="photo-placeholder-text">Your photo here</span>
+            </div>
+            <p class="affiliation-label">Affiliation</p>
+            <p class="affiliation-value">{{ student.university }}</p>
+            <p class="affiliation-value muted">{{ student.department }}</p>
+
+            <div class="hero-links">
+                <a class="btn btn-outline" href="mailto:{{ student.email }}">Email</a>
+                {% if student.google_scholar %}
+                <a class="btn btn-outline" href="{{ student.google_scholar }}" target="_blank" rel="noopener">Google Scholar</a>
+                {% endif %}
+                {% if student.github %}
+                <a class="btn btn-outline" href="{{ student.github }}" target="_blank" rel="noopener">GitHub</a>
+                {% endif %}
+            </div>
+            {% if student.orcid %}
+            <a class="btn btn-outline btn-block" href="{{ student.orcid }}" target="_blank" rel="noopener">ORCID</a>
+            {% endif %}
+            {% if student.research_profile_url %}
+            <a class="btn btn-outline btn-block" href="{{ student.research_profile_url }}" target="_blank" rel="noopener">Research Profile</a>
+            {% endif %}
+        </div>
+
+        <div class="hero-copy">
+            <p class="eyebrow">{{ student.title }}</p>
+            <h1 class="display-name">{{ student.name }}</h1>
+            <p class="lede">PhD Researcher &middot; {{ student.department }} &middot; {{ student.university }}</p>
+
+            <p>{{ student.bio_short }}</p>
+
+            <div class="cta-row">
+                <a href="{{ url_for('main.research') }}" class="btn btn-primary">View Research</a>
+                <a href="{{ url_for('main.publications') }}" class="btn btn-secondary">View Publications</a>
+                {% if student.cv_filename %}
+                <a href="{{ url_for('static', filename='files/' ~ student.cv_filename) }}" class="btn btn-secondary">Download CV</a>
+                {% else %}
+                <span class="btn btn-secondary btn-disabled" title="CV not yet uploaded">[ADD CV]</span>
+                {% endif %}
+                <a href="{{ url_for('main.contact') }}" class="btn btn-secondary">Contact Me</a>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <p class="info-card-label">Research Interests</p>
+                    <ul>
+                        {% for interest in student.research_interests[:3] %}
+                        <li>{{ interest }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <p class="info-card-label">Current Project</p>
+                    <ul>
+                        <li>{{ student.research_title }}</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <p class="info-card-label">Funded By</p>
+                    <ul>
+                        <li>{{ student.research_funder }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

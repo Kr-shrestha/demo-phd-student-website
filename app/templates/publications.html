@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Publications{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container narrow">
+        <p class="eyebrow">Publications</p>
+        <h1 class="section-title">Selected Publications</h1>
+
+        {% if publications %}
+        <div class="filter-row" id="pubFilter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            {% for type in publications|map(attribute='pub_type')|unique %}
+                {% if type %}
+                <button class="filter-btn" data-filter="{{ type }}">{{ type }}</button>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="publication-list">
+            {% for pub in publications %}
+            <article class="publication-item" data-type="{{ pub.pub_type or '' }}">
+                <p class="pub-year">{{ pub.year if pub.year else '[ADD YEAR]' }}</p>
+                <div class="pub-body">
+                    <h3 class="pub-title">{{ pub.title }}</h3>
+                    <p class="pub-authors">{{ pub.authors }}</p>
+                    <p class="pub-venue">{{ pub.venue }}</p>
+                    {% if pub.description %}
+                    <p class="pub-description">{{ pub.description }}</p>
+                    {% endif %}
+                    {% if pub.link %}
+                    <a href="{{ pub.link }}" class="pub-link" target="_blank" rel="noopener">View Paper &rarr;</a>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">[ADD PUBLICATIONS]</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
