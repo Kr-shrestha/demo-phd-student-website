@@ -20,37 +20,38 @@ main = Blueprint("main", __name__)
 # Anything not supplied is left as a clearly marked placeholder.
 # ---------------------------------------------------------------------
 STUDENT = {
-    "name": "Gitta Shrestha Thapa",
+    "name": "Gitta Shrestha",
     "title": "PhD Candidate",
-    "department": "Division of Rural Development",
+    "department": "Department of Rural and Urban Development",
     "university": "Swedish University of Agricultural Sciences (SLU)",
-    "location": "[ADD LOCATION]",
+    "location": "Uppsala, Sweden",
     "email": "gitta.shrestha@slu.se",
     "mobile_phone": "+46 730 51 90 02",
     "phone": "+46 18 67 34 23",
     "research_profile_url": "https://research.slu.se/en/persons/gitta-shrestha-thapa/",
+    "researchgate_url": "https://www.researchgate.net/profile/Gitta-Shrestha?ev=prf_overview",
     "linkedin": "",
     "google_scholar": "",
     "orcid": "",
     "github": "",
-    "cv_filename": "",  # place a PDF at app/static/files/ and set the filename here
+    "cv_filename": "Gitta_Shrestha_CV.pdf",
 
     "bio_short": (
-        "I am a PhD candidate in rural development at SLU. I work on the "
-        "project \u201cThe Future of Agrarian Mountain Livelihoods (FAML): "
-        "Youth Aspirations and Irrigation Modernisation in Nepal\u201d with "
-        "Stephanie Leder, Marien Gonz\u00e1lez Hidalgo, and Jonathan Rigg. "
-        "The project is funded by FORMAS."
+        "I am a PhD candidate in rural development at SLU."
     ),
     "bio_long": (
         "My previous experience includes consulting on projects implemented "
-        "by various international organizations (USAID, UNICEF-ROSA, OGAIR) "
+        "by various international organizations (USAID, UNICEF-ROSA, IWMI) "
         "and universities (Zurich, Wageningen), and working as a researcher "
         "for a CGIAR centre. I earned a Bachelor's degree with Honours in "
         "Geography from Calcutta University, a Master's degree in Geography "
         "from Tribhuvan University, and an MPhil in Human Geography from the "
         "University of Bergen."
     ),
+
+    # "Current Research" - the overarching research theme/heading,
+    # kept separate from the specific funded project below.
+    "current_research_title": "Modern irrigation practices, youth subjectivities and new ruralities",
     "research_description": (
         "In my PhD research, I am trying to understand rural transformations "
         "and rural futures in the context of the shift from traditional "
@@ -62,12 +63,13 @@ STUDENT = {
         "transformations in the region, driven by forces operating at "
         "multiple scales."
     ),
+
+    # "Project" - kept as its own separate heading from Current Research.
     "research_title": (
         "The Future of Agrarian Mountain Livelihoods (FAML): Youth "
         "Aspirations and Irrigation Modernisation in Nepal"
     ),
     "research_funder": "FORMAS",
-    "research_collaborators": "Stephanie Leder, Marien Gonz\u00e1lez Hidalgo, Jonathan Rigg",
     "research_interests": [
         "Rural Development",
         "Agrarian Transformation",

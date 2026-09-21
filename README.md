@@ -129,3 +129,4 @@ a Python shell using the `Publication` model in `app/models.py`.
 - Interactive behavior (mobile menu, publication filters): edit
   `app/static/js/main.js`.
 
+print as @ in userfoprm  
