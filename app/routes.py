@@ -66,8 +66,7 @@ STUDENT = {
 
     # "Project" - kept as its own separate heading from Current Research.
     "research_title": (
-        "The Future of Agrarian Mountain Livelihoods (FAML): Youth "
-        "Aspirations and Irrigation Modernisation in Nepal"
+        "Modern irrigation practices, youth subjectivities and new ruralities "
     ),
     "research_funder": "FORMAS",
     "research_interests": [
